@@ -1,0 +1,5 @@
+/data
+/PanoFormer/tmp_s2d3dtest/panodepth/models
+/PanoFormer/tmp_s2d3d/panodepth/models/weights
+__pycache__/
+*.pyc

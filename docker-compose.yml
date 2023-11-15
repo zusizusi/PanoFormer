@@ -1,0 +1,27 @@
+version: "2.4"
+
+################################################################################
+
+services:
+  cuda-pytorch:
+    build: ./
+    image: cuda110-pytorch1.7.1
+    container_name: panofomer
+    runtime: nvidia
+    tty: true
+    shm_size: 1G
+    privileged: true
+    environment:
+      # Display X Server GUI.
+      - DISPLAY
+      - QT_X11_NO_MITSHM=1
+      # Configure Nvidia Docker interface.
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - NVIDIA_REQUIRE_CUDA=cuda>=10.0
+
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ./PanoFormer:/PanoFormer
+      - [Path_to_your_dataset]:/data
+    network_mode: host
